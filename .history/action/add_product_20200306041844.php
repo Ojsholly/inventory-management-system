@@ -79,7 +79,7 @@
                                 <label class="col-sm-2 col-form-label">Product Name</label>
                                 <div class="col-sm-6">
                                     <input type="text" placeholder="Enter product name." class="form-control"
-                                        required="" name="product_nam" />
+                                        required="" value="<?php echo $_POST['product_nam'] ?>" name="product_nam" />
                                 </div>
                             </div>
 
@@ -87,7 +87,7 @@
                                 <label class="col-sm-2 col-form-label">Barcode</label>
                                 <div class="col-sm-6">
                                     <input type="text" placeholder="Barcode" class="form-control" required=""
-                                        name="barcode" />
+                                        value="<?php echo $_POST['product_nam'] ?>" name="barcode" />
                                 </div>
                             </div>
 
@@ -139,9 +139,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Shelf Life (In Days)</label>
+                                <label class="col-sm-2 col-form-label">Shelf Life</label>
                                 <div class="col-sm-6">
-                                    <input type="number" min="1" placeholder="Enter shelf life ." class="form-control"
+                                    <input type="number" placeholder="Enter shelf life ." class="form-control"
                                         required="" name="shelf_life" />
                                 </div>
                             </div>

@@ -63,7 +63,6 @@
                                         <th>(#)Price</th>
                                         <th>Category</th>
                                         <th>Amount In Stock</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,8 +73,6 @@
                   while ($row = mysqli_fetch_array($product)) :
                     $count++;
                     $category = get_from_another_table($row['category_id'], 'id', 'category');
-
-                    $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
                   ?>
                                     <tr>
                                         <td><?php echo $count ?></td>
@@ -87,20 +84,6 @@
                                         <td><?php echo $category[0]['category_name'] = 0 ? 'Not Categorized' : $category[0]['category_name'] ?>
                                         </td>
                                         <td><?php echo $row['stock_count'] ?></td>
-                                        <td>
-                                            <?php
-                        $today = date("Y-m-d");
-                        if ($today >= $spoilage_date) {
-                        ?>
-                                            <span class="badge badge-danger">Stale</span>
-                                            <?php
-                        } else {
-                        ?>
-                                            <span class="badge badge-success">Fresh</span>
-                                            <?php
-                        }
-                        ?>
-                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-icons btn-rounded btn-success"
                                                 data-tooltip="View" data-toggle="modal"
@@ -138,9 +121,8 @@
                     echo '<br> Category Name : ' . $category[0]['category_name'];
                     echo '<br> Stock Count : ' . $row['stock_count'];
                     echo '<br> Info : ' . $row['info'];
-                    echo '<br> Shelf Life : ' . $row['shelf_life'] . ' day(s)';
+                    echo '<br> Shelf Life : ' . $row['shelf_life'];
                     echo '<br> Expiry Date : ' . $row['expiry_date'];
-                    echo '<br> Last Update : ' . $row['last_update'];
                     echo '
                     </div>
                     <div class="modal-footer">
@@ -199,9 +181,9 @@
                     </div>
                     </div>
                     <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Shelf Life(In days)</label>
+                    <label class="col-sm-3 col-form-label">Shelf Life</label>
                     <div class="col-sm-6"> ';
-                    echo '<input type="number" min="1"  class="form-control" value="' . $row['shelf_life'] . '" name="shelf_life" required="" >
+                    echo '<input type="number"  class="form-control" value="' . $row['shelf_life'] . '" name="shelf_life" required="" >
                     </div>
                     </div>
                     <div class="form-group row">

@@ -74,8 +74,13 @@
                   while ($row = mysqli_fetch_array($product)) :
                     $count++;
                     $category = get_from_another_table($row['category_id'], 'id', 'category');
+                    // $today = date("Y-m-d H:i:s");
+                    // $today = new DateTime($today);
+                    // $last_update = new DateTime($row['last_update']);
 
-                    $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
+                    // $interval = date_diff($last_update, $today);
+                    // $interval =  $interval->format('%R%a');
+                    $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life'] . " days"));
                   ?>
                                     <tr>
                                         <td><?php echo $count ?></td>
@@ -88,18 +93,7 @@
                                         </td>
                                         <td><?php echo $row['stock_count'] ?></td>
                                         <td>
-                                            <?php
-                        $today = date("Y-m-d");
-                        if ($today >= $spoilage_date) {
-                        ?>
-                                            <span class="badge badge-danger">Stale</span>
-                                            <?php
-                        } else {
-                        ?>
-                                            <span class="badge badge-success">Fresh</span>
-                                            <?php
-                        }
-                        ?>
+
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-icons btn-rounded btn-success"

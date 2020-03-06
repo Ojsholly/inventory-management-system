@@ -29,7 +29,7 @@
 
               $table_name = "products";
 
-              $data = array("name" => $product, "price" => $price, "info" => $info, "stock_count" => $stock_count, "expiry_date" => $expiry_date, "shelf_life" => $shelf_life, "last_update" => $update_time);
+              $data = array("name" => $product, "price" => $price, "info" => $info, "stock_count" => $stock_count, "expiry_date" => $expiry_date, "shelf_life" => $shelf_life, "last_update" => $update_timie);
 
               updateData($dbc, $data, $table_name, $where);
 
@@ -63,7 +63,6 @@
                                         <th>(#)Price</th>
                                         <th>Category</th>
                                         <th>Amount In Stock</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,8 +73,6 @@
                   while ($row = mysqli_fetch_array($product)) :
                     $count++;
                     $category = get_from_another_table($row['category_id'], 'id', 'category');
-
-                    $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
                   ?>
                                     <tr>
                                         <td><?php echo $count ?></td>
@@ -87,20 +84,6 @@
                                         <td><?php echo $category[0]['category_name'] = 0 ? 'Not Categorized' : $category[0]['category_name'] ?>
                                         </td>
                                         <td><?php echo $row['stock_count'] ?></td>
-                                        <td>
-                                            <?php
-                        $today = date("Y-m-d");
-                        if ($today >= $spoilage_date) {
-                        ?>
-                                            <span class="badge badge-danger">Stale</span>
-                                            <?php
-                        } else {
-                        ?>
-                                            <span class="badge badge-success">Fresh</span>
-                                            <?php
-                        }
-                        ?>
-                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-icons btn-rounded btn-success"
                                                 data-tooltip="View" data-toggle="modal"
@@ -138,9 +121,6 @@
                     echo '<br> Category Name : ' . $category[0]['category_name'];
                     echo '<br> Stock Count : ' . $row['stock_count'];
                     echo '<br> Info : ' . $row['info'];
-                    echo '<br> Shelf Life : ' . $row['shelf_life'] . ' day(s)';
-                    echo '<br> Expiry Date : ' . $row['expiry_date'];
-                    echo '<br> Last Update : ' . $row['last_update'];
                     echo '
                     </div>
                     <div class="modal-footer">
@@ -199,21 +179,9 @@
                     </div>
                     </div>
                     <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Shelf Life(In days)</label>
-                    <div class="col-sm-6"> ';
-                    echo '<input type="number" min="1"  class="form-control" value="' . $row['shelf_life'] . '" name="shelf_life" required="" >
-                    </div>
-                    </div>
-                    <div class="form-group row">
                     <label class="col-sm-3 col-form-label"> Info</label>
                     <div class="col-sm-6"> ';
-                    echo '<input type="text" class="form-control" value="' . $row['info'] . '" name="info" required="" >
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                    <label class="col-sm-3 col-form-label"> Expiry Date</label>
-                    <div class="col-sm-6"> ';
-                    echo '<input type="date" min="' . date('Y-m-d') . '" class="form-control" value="' . $row['expiry_date'] . '" name="expiry_date" >
+                    echo '<input type="text" class="form-control" value="' . $row['info'] . '" name="info" >
                     </div>
                     </div>
                     </div>

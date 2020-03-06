@@ -139,9 +139,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Shelf Life (In Days)</label>
+                                <label class="col-sm-2 col-form-label">Shelf Life</label>
                                 <div class="col-sm-6">
-                                    <input type="number" min="1" placeholder="Enter shelf life ." class="form-control"
+                                    <input type="number" placeholder="Enter shelf life ." class="form-control"
                                         required="" name="shelf_life" />
                                 </div>
                             </div>

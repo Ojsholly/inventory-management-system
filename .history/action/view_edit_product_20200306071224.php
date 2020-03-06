@@ -74,8 +74,12 @@
                   while ($row = mysqli_fetch_array($product)) :
                     $count++;
                     $category = get_from_another_table($row['category_id'], 'id', 'category');
-
-                    $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
+                    $today = date("Y-m-d H:i:s");
+                    $today = strtotime($today);
+                    $last_update = new DateTime($row['last_update']);
+                    // exit(var_dump($last_update));
+                    $interval = date_diff($last_update, $today);
+                    $interval =  $interval->format('%R%a');
                   ?>
                                     <tr>
                                         <td><?php echo $count ?></td>
@@ -89,14 +93,13 @@
                                         <td><?php echo $row['stock_count'] ?></td>
                                         <td>
                                             <?php
-                        $today = date("Y-m-d");
-                        if ($today >= $spoilage_date) {
+                        if ($interval >= ($row['shelf_life'] - 1)) {
                         ?>
-                                            <span class="badge badge-danger">Stale</span>
+                                            <span class="badge badge-success">Viable</span>
                                             <?php
                         } else {
                         ?>
-                                            <span class="badge badge-success">Fresh</span>
+                                            <span class="badge badge-danger">Non-Viable</span>
                                             <?php
                         }
                         ?>
@@ -138,7 +141,7 @@
                     echo '<br> Category Name : ' . $category[0]['category_name'];
                     echo '<br> Stock Count : ' . $row['stock_count'];
                     echo '<br> Info : ' . $row['info'];
-                    echo '<br> Shelf Life : ' . $row['shelf_life'] . ' day(s)';
+                    echo '<br> Shelf Life : ' . $row['shelf_life'] . 'days';
                     echo '<br> Expiry Date : ' . $row['expiry_date'];
                     echo '<br> Last Update : ' . $row['last_update'];
                     echo '
