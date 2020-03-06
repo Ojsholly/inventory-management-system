@@ -202,10 +202,10 @@ include('inc/redirect.php');
                                     <img src="assets/images/faces/face1.png" alt="profile image">
                                 </div>
                                 <div class="text-wrapper">
-                                    <p class="profile-name"><?php echo $title; ?></p>
+                                    <p class="profile-name">Administrator</p>
                                     <div>
-                                        <small class="designation text-muted"></small>
-                                        <span class="status-indicator online">Online</span>
+                                        <small class="designation text-muted"><?php echo $title; ?></small>
+                                        <span class="status-indicator online"></span>
                                     </div>
                                 </div>
                             </div>
@@ -226,6 +226,12 @@ include('inc/redirect.php');
                         <a class="nav-link" href="products.php">
                             <i class="menu-icon mdi mdi-table"></i>
                             <span class="menu-title">Sell Items</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"' ?>>
+                        <a class="nav-link" href="refund_product.php">
+                            <i class="menu-icon mdi mdi-table"></i>
+                            <span class="menu-title">Refund Product</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -264,6 +270,58 @@ include('inc/redirect.php');
                             </ul>
                         </div>
                     </li>
+
+                    <li class="nav-item" <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"' ?>>
+                        <a class="nav-link" data-toggle="collapse" href="#Expense" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-content-copy"></i>
+                            <span class="menu-title">Expenses</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="Expense">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="add_expense.php">Add Expense</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_edit_expense.php">View/Edit Expenses</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_edit_refund.php">View/Edit Refund</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#transaction" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-content-copy"></i>
+                            <span class="menu-title">Transaction</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="transaction">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="give_money.php">Give Money</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="receive_money.php">Receive Money</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_money_give.php">View Money Given</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_money_receive.php">View Money Received</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item" <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"' ?>>
+                        <a class="nav-link" href="generate_report.php">
+                            <i class="menu-icon mdi mdi-restart"></i>
+                            <span class="menu-title">Report</span>
+                        </a>
+                    </li>
                     <li class="nav-item"
                         <?php if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) echo 'style="display: none;"' ?>>
                         <a class="nav-link" data-toggle="collapse" href="#Staff" aria-expanded="false"
@@ -281,10 +339,16 @@ include('inc/redirect.php');
                                     <a class="nav-link" href="view_edit_staff.php">View/Edit Staff</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="view_login_activity.php">View Login Activity</a>
+                                    <a class="nav-link" href="view_login_activity.php">View Login ACtivity</a>
                                 </li>
                             </ul>
                         </div>
+                    </li>
+                    <li class="nav-item" <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"' ?>>
+                        <a class="nav-link" href="company_profile.php">
+                            <i class="menu-icon mdi mdi-restart"></i>
+                            <span class="menu-title">Company Profle</span>
+                        </a>
                     </li>
                 </ul>
             </nav>

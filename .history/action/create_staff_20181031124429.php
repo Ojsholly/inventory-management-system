@@ -88,7 +88,7 @@
                                               <input type="password" class="form-control" required name="password"/>
                                           </div>
                                       </div>
-
+                                      
                                       <!--<div class="form-group row">
                                           <label class="col-sm-2 col-form-label" name="user_id">User ID</label>
                                           <div class="col-sm-6">
@@ -101,7 +101,8 @@
                                           <div class="col-sm-6">
                                               <select class="form-control" name="role" >
                                                   <option value="">Select Role</option>
-                                                  <option value="1">Analyst</option>
+                                                  <option value="0">Staff</option>
+                                                  <option value="1">Manager</option>
                                                   <option value="2">Administrator</option>
                                               </select>
                                           </div>

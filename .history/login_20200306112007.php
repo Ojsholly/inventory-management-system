@@ -56,8 +56,8 @@ $error = array();
 
                     $datetime = date("Y-m-d H:i:s");
 
-                    $log = mysqli_query($dbc, "INSERT INTO login_activity (username, ip_address, time) VALUES ('$username', '$user_ip', '$datetime')");
-                    // exit(var_dump($log . " " . mysqli_error($dbc)));
+                    $log = mysqli_query($dbc, "INSERT INTO login_activity ('username', 'ip_address', 'time') VALUES ('$username', '$user_ip', '$datetime')");
+                    exit(var_dump($log));
                     echo '<div class="alert alert-success">Login Successful</div>';
 
                     echo '<script>window.location.href = "dashboard.php";</script>';

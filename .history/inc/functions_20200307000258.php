@@ -352,7 +352,7 @@ function delete_sales_refunded()
 function count_category_frequencies($category_id)
 {
     global $dbc;
-    $sql = "SELECT COUNT(category_id) as count FROM products WHERE category_id = $category_id";
+    $sql = "SELECT COUNT(category_id) as count FROM products";
     $result = mysqli_query($dbc, $sql);
     $data = mysqli_fetch_assoc($result);
     return $data["count"];

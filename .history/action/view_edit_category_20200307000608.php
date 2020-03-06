@@ -23,13 +23,13 @@
                   $category = get_from_db('category');
                   while ($row = mysqli_fetch_array($category)) :
                     $count++;
-                    $frequency = count_category_frequencies($row["id"]);
+                    $frequency = count_category_frequencies($row[""]);
                   ?>
                                     <tr>
                                         <td><?php echo $count ?></td>
                                         <td><?php echo ucfirst($row['category_name']) ?></td>
                                         <td><?php echo $row['description'] ?></td>
-                                        <td><?php echo $frequency; ?></td>
+                                        <td></td>
                                         <td>
                                             <button type="button" class="btn btn-icons btn-rounded btn-success"
                                                 data-tooltip="View" data-toggle="modal"

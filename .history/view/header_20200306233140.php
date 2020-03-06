@@ -200,20 +200,19 @@ include('inc/redirect.php');
                             <div class="user-wrapper">
                                 <div class="profile-image">
                                     <img src="assets/images/faces/face1.png" alt="profile image">
-                                </div>
-                                <div class="text-wrapper">
-                                    <p class="profile-name"><?php echo $title; ?></p>
-                                    <div>
-                                        <small class="designation text-muted"></small>
-                                        <span class="status-indicator online">Online</span>
+                                    <div class="text-wrapper">
+                                        <p class="profile-name">Administrator</p>
+                                        <div>
+                                            <small class="designation text-muted"><?php echo $title; ?></small>
+                                            <span class="status-indicator online"></span>
+                                        </div>
                                     </div>
                                 </div>
+                                <a href="add_product.php" class="nav-link">
+                                    <button class="btn btn-success btn-block">Add Product
+                                        <i class="mdi mdi-plus"></i>
+                                    </button></a>
                             </div>
-                            <a href="add_product.php" class="nav-link">
-                                <button class="btn btn-success btn-block">Add Product
-                                    <i class="mdi mdi-plus"></i>
-                                </button></a>
-                        </div>
                     </li>
 
                     <li class="nav-item">

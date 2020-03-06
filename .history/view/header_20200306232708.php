@@ -202,10 +202,10 @@ include('inc/redirect.php');
                                     <img src="assets/images/faces/face1.png" alt="profile image">
                                 </div>
                                 <div class="text-wrapper">
-                                    <p class="profile-name"><?php echo $title; ?></p>
+                                    <p class="profile-name">Administrator</p>
                                     <div>
-                                        <small class="designation text-muted"></small>
-                                        <span class="status-indicator online">Online</span>
+                                        <small class="designation text-muted"><?php echo $title; ?></small>
+                                        <span class="status-indicator online"></span>
                                     </div>
                                 </div>
                             </div>

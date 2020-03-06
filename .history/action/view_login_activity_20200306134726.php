@@ -4,77 +4,26 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Product</h4>
-                        <?php
-                        if (isset($_POST['submit'])) {
+                        <h4 class="card-title">Login ACtivity</h4>
 
-                            $id = $_POST["product_id"];
-                            $product = $_POST["product"];
-                            $category_name = $_POST["category_name"];
-                            $price = $_POST["price"];
-                            $stock_count = $_POST["stock_count"];
-                            $info = $_POST["info"];
-                            $expiry_date = $_POST['expiry_date'];
-                            $shelf_life = $_POST['shelf_life'];
-                            $update_time = date('Y-m-d H:i:s');
-
-                            //header('Location: ../view_edit_product.php?message=success');
-
-
-                            //                      $sql = "UPDATE sales SET products = '" . $product . "' WHERE product_id = '" . $id . "' ";
-                            //                      $result = mysqli_query($dbc, $sql);
-
-
-                            $where = 'where id = "' . $id . '"';
-
-                            $table_name = "products";
-
-                            $data = array("name" => $product, "price" => $price, "info" => $info, "stock_count" => $stock_count, "expiry_date" => $expiry_date, "shelf_life" => $shelf_life, "last_update" => $update_time);
-
-                            updateData($dbc, $data, $table_name, $where);
-
-
-                            echo '<div class="alert alert-success">Product Changed</div>';
-                        }
-
-
-                        ?>
-                        <?php
-
-                        if (isset($_POST['delete'])) {
-
-                            $sql = "DELETE FROM products WHERE id='" . $_POST['product_id'] . "'";
-                            $result = mysqli_query($dbc, $sql);
-                            if ($result) {
-
-                                echo '<div class="alert alert-success"> Deleted successfully</div>';
-                            } else {
-                                echo '<div class="alert alert-warning">Failed</div>';
-                            }
-                        }
-                        ?>
                         <div class="table-responsive">
                             <table id="table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
-                                        <th>Image</th>
-                                        <th>Product name</th>
-                                        <th>(#)Price</th>
-                                        <th>Category</th>
-                                        <th>Amount In Stock</th>
-                                        <th>Status</th>
-                                        <th>Expiry Date</th>
-                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>IP Address</th>
+                                        <th>Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $count = 0;
-                                    $product = get_from_db('products');
-                                    while ($row = mysqli_fetch_array($product)) :
+                                    $login = get_from_db('login_activity');
+                                    while ($row = mysqli_fetch_array($login)) :
                                         $count++;
-                                        $category = get_from_another_table($row['category_id'], 'id', 'category');
+                                        $first_name = get_from_another_table($row['username'], '', 'staff');
 
                                         $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
                                     ?>
@@ -102,7 +51,6 @@
                                                 }
                                                 ?>
                                         </td>
-                                        <td><?php echo $row["expiry_date"] ?></td>
                                         <td>
                                             <button type="button" class="btn btn-icons btn-rounded btn-success"
                                                 data-tooltip="View" data-toggle="modal"

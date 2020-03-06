@@ -78,51 +78,44 @@
 
                                         $spoilage_date = date('Y-m-d', strtotime($row['last_update'] . ' +' . $row['shelf_life']  . " days"));
                                     ?>
-                                    <tr>
-                                        <td><?php echo $count ?></td>
-                                        <td><img
-                                                src="products/<?php echo $row['image'] == '' ? 'product.jpg' : $row['image'] ?>">
-                                        </td>
-                                        <td><?php echo ucfirst($row['name']) ?></td>
-                                        <td><?php echo number_format($row['price'], 2) ?></td>
-                                        <td><?php echo $category[0]['category_name'] = 0 ? 'Not Categorized' : $category[0]['category_name'] ?>
-                                        </td>
-                                        <td><?php echo $row['stock_count'] ?></td>
-                                        <td>
-                                            <?php
+                                        <tr>
+                                            <td><?php echo $count ?></td>
+                                            <td><img src="products/<?php echo $row['image'] == '' ? 'product.jpg' : $row['image'] ?>">
+                                            </td>
+                                            <td><?php echo ucfirst($row['name']) ?></td>
+                                            <td><?php echo number_format($row['price'], 2) ?></td>
+                                            <td><?php echo $category[0]['category_name'] = 0 ? 'Not Categorized' : $category[0]['category_name'] ?>
+                                            </td>
+                                            <td><?php echo $row['stock_count'] ?></td>
+                                            <td>
+                                                <?php
                                                 $today = date("Y-m-d");
                                                 if ($today >= $spoilage_date) {
                                                 ?>
-                                            <span class="badge badge-danger">Stale</span>
-                                            <?php
+                                                    <span class="badge badge-danger">Stale</span>
+                                                <?php
                                                 } else {
                                                 ?>
-                                            <span class="badge badge-success">Fresh</span>
-                                            <?php
+                                                    <span class="badge badge-success">Fresh</span>
+                                                <?php
                                                 }
                                                 ?>
-                                        </td>
-                                        <td><?php echo $row["expiry_date"] ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-icons btn-rounded btn-success"
-                                                data-tooltip="View" data-toggle="modal"
-                                                data-target="#viewModal<?php echo $count; ?>">
-                                                <i class="mdi mdi-eye"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-icons btn-rounded btn-warning"
-                                                data-tooltip="Edit" data-toggle="modal"
-                                                data-target="#editModal<?php echo $count; ?>">
-                                                <i class="mdi mdi-table-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-icons btn-rounded btn-danger"
-                                                data-tooltip="Delete" data-toggle="modal"
-                                                data-target="#deleteModal<?php echo $count; ?>">
-                                                <i class="mdi mdi-delete"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td><?php echo $row["expiry_date"] ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-icons btn-rounded btn-success" data-tooltip="View" data-toggle="modal" data-target="#viewModal<?php echo $count; ?>">
+                                                    <i class="mdi mdi-eye"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-tooltip="Edit" data-toggle="modal" data-target="#editModal<?php echo $count; ?>">
+                                                    <i class="mdi mdi-table-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icons btn-rounded btn-danger" data-tooltip="Delete" data-toggle="modal" data-target="#deleteModal<?php echo $count; ?>">
+                                                    <i class="mdi mdi-delete"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
 
-                                    <?php
+                                        <?php
                                         echo '
                     <div class="modal fade" id="viewModal' . $count . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -153,7 +146,7 @@
                     </div>
                     ';
                                         ?>
-                                    <?php
+                                        <?php
                                         echo '
                     <div class="modal fade" id="editModal' . $count . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -229,7 +222,7 @@
                     </div>
                     ';
                                         ?>
-                                    <?php
+                                        <?php
                                         echo '
                     <div class="modal fade" id="deleteModal' . $count . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
