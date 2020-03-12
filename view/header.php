@@ -12,7 +12,7 @@ include('inc/redirect.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>POS | <?php echo $page ?></title>
+    <title>Shoprite Inventory Management System | <?php echo $page ?></title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -42,24 +42,52 @@ include('inc/redirect.php');
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!---Datatables-->
-    <!--    <script src = " https://code.jquery.com/jquery-3.3.1.js"> </script>-->
+    <script src=" https://code.jquery.com/jquery-3.3.1.js"> </script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"> </script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"> </script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+
+
+
+
+
+    <script src="js/table2csv.js">
+    </script>
     <script>
     $(document).ready(function() {
         $('#table').DataTable();
     });
     </script>
 
-    <!--select 2 --->
+    <script>
+    $(document).ready(function() {
+        $("#export_button").click(function() {
+            $('table').table2csv({
+                file_name: 'Shoprite Inventory Management System <?php echo $page ?>.csv',
+                header_body_space: 0
+            });
+        });
+    });
+    </script>
+    <!--select 2--->
+
     <link rel="stylesheet" href="../dist/css/select2.css">
+
     <link rel="stylesheet" href="../dist/css/select2.min.css">
 
     <link href="select2.css" rel="stylesheet" />
-    <script src="select2.js"></script>
+    <script src="select2.js">
+    </script>
     <script>
     $(document).ready(function() {
-        $("#e1").select2();
+        $("select").select2();
     });
     </script>
 
@@ -160,10 +188,9 @@ include('inc/redirect.php');
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                 <a class="navbar-brand brand-logo" href="dashboard.php">
-                    <img src="assets/images/logo.svg" alt="logo" />
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="dashboard.php">
-                    <img src="assets/images/logo-mini.svg" alt="logo" />
+                    <img style="background-color: red;"
+                        src="https://www.shoprite.com.ng/content/dam/shoprite/siteassest/shoprite_logo.png"
+                        alt="logo" />
                 </a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -215,17 +242,10 @@ include('inc/redirect.php');
                                 </button></a>
                         </div>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">
                             <i class="menu-icon mdi mdi-television"></i>
                             <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.php">
-                            <i class="menu-icon mdi mdi-table"></i>
-                            <span class="menu-title">Sell Items</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -237,7 +257,8 @@ include('inc/redirect.php');
                         </a>
                         <div class="collapse" id="category">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item">
+                                <li class="nav-item"
+                                    <?php if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) echo 'style="display: none;"' ?>>
                                     <a class="nav-link" href="add_category.php">Add Category</a>
                                 </li>
                                 <li class="nav-item">
@@ -285,6 +306,13 @@ include('inc/redirect.php');
                                 </li>
                             </ul>
                         </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.php">
+                            <i class="menu-icon mdi mdi-table"></i>
+                            <span class="menu-title">Sell Items</span>
+                        </a>
                     </li>
                 </ul>
             </nav>

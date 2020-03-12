@@ -12,7 +12,7 @@ $error = array();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Free Bootstrap Admin Dashboard Template</title>
+    <title>Shoprite Inventory Management System</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -32,60 +32,63 @@ $error = array();
             <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
                 <div class="row w-100">
                     <div class="col-lg-4 mx-auto">
+                        <a href="https://www.shoprite.com.ng/"><img style="background-color: red; width:100%;"
+                                src="https://www.shoprite.com.ng/content/dam/shoprite/siteassest/shoprite_logo.png"
+                                alt="logo"></a>
                         <div class="auto-form-wrapper">
                             <?php
-              $username = '';
-              $role = '';
-              if (isset($_POST["login"])) {
-                $username = stripslashes($_POST["email"]);
-                $password = stripslashes($_POST["password"]);
-                $hashed_password = md5($password);
-                global $dbc;
-                $result = mysqli_query($dbc, "select * from staff where email = '" . $username . "'");
-                $row = mysqli_fetch_assoc($result);
+                            $username = '';
+                            $role = '';
+                            if (isset($_POST["login"])) {
+                                $username = stripslashes($_POST["email"]);
+                                $password = stripslashes($_POST["password"]);
+                                $hashed_password = md5($password);
+                                global $dbc;
+                                $result = mysqli_query($dbc, "select * from staff where email = '" . $username . "'");
+                                $row = mysqli_fetch_assoc($result);
 
-                if (mysqli_num_rows($result) == 0) {
-                  $error['failed'] = 'Invalid Login Details';
-                } else {
-                  if ($hashed_password == $row['password']) {
-                    $_SESSION['email'] = $username;
+                                if (mysqli_num_rows($result) == 0) {
+                                    $error['failed'] = 'Invalid Login Details';
+                                } else {
+                                    if ($hashed_password == $row['password']) {
+                                        $_SESSION['email'] = $username;
 
-                    $_SESSION['role'] = $row['role'];
+                                        $_SESSION['role'] = $row['role'];
 
-                    $user_ip = $_SERVER['REMOTE_ADDR'];
+                                        $user_ip = $_SERVER['REMOTE_ADDR'];
 
-                    $datetime = date("Y-m-d H:i:s");
+                                        $datetime = date("Y-m-d H:i:s");
 
-                    $log = mysqli_query($dbc, "INSERT INTO login_activity (username, ip_address, time) VALUES ('$username', '$user_ip', '$datetime')");
-                    // exit(var_dump($log . " " . mysqli_error($dbc)));
-                    echo '<div class="alert alert-success">Login Successful</div>';
+                                        $log = mysqli_query($dbc, "INSERT INTO login_activity (username, ip_address, time) VALUES ('$username', '$user_ip', '$datetime')");
+                                        // exit(var_dump($log . " " . mysqli_error($dbc)));
+                                        echo '<div class="alert alert-success">Login Successful</div>';
 
-                    echo '<script>window.location.href = "dashboard.php";</script>';
-                  } else {
-                    $error['password'] = 'Invalid Login Details';
-                  }
-                  $error['success'] = "yes there is user";
-                }
-              }
+                                        echo '<script>window.location.href = "dashboard.php";</script>';
+                                    } else {
+                                        $error['password'] = 'Invalid Login Details';
+                                    }
+                                    $error['success'] = "yes there is user";
+                                }
+                            }
 
-              if (isset($error['failed']) &&  $error['failed'] = 'Invalid Login Details') {
+                            if (isset($error['failed']) &&  $error['failed'] = 'Invalid Login Details') {
 
-                echo '<div class="alert alert-danger">' . $error['failed'] . '</div>';
-              }
+                                echo '<div class="alert alert-danger">' . $error['failed'] . '</div>';
+                            }
 
-              if (isset($error['password'])) {
-                echo '<div class="alert alert-danger">' . $error['password'] . '</div>';
-              }
-              if (isset($_GET['message']) && $_GET['message'] == 'logout') {
-                unset($_SESSION['email']);
-                unset($_SESSION['role']);
-                echo '<div class="alert alert-warning">Logout Successful</div>';
-                echo '<script>window.location.href = "login.php";</script>';
-                //                   echo '<meta http-equiv="refresh" content="3;URL=\'login.php\'" />';
-              }
-              //code to fetch login details
+                            if (isset($error['password'])) {
+                                echo '<div class="alert alert-danger">' . $error['password'] . '</div>';
+                            }
+                            if (isset($_GET['message']) && $_GET['message'] == 'logout') {
+                                unset($_SESSION['email']);
+                                unset($_SESSION['role']);
+                                echo '<div class="alert alert-warning">Logout Successful</div>';
+                                echo '<script>window.location.href = "login.php";</script>';
+                                //                   echo '<meta http-equiv="refresh" content="3;URL=\'login.php\'" />';
+                            }
+                            //code to fetch login details
 
-              ?>
+                            ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label class="label">Email</label>

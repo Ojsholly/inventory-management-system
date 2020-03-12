@@ -164,7 +164,7 @@
                                             echo ' <select class="form-control" name="role">';
                                             echo '<option value="' . $row['role'] .  '" >' . $title . '</option>';
                                             echo '     <option value="0">Staff</option>
-                                               <option value="1">Manager</option>
+                                               <option value="1">Analyst</option>
                                                <option value="2">Administrator</option>
                                               </select>
                                     </div>

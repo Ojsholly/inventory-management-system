@@ -34,9 +34,7 @@ if($_SESSION['role'] == 0){
 if($_SESSION['role'] == 0){
     $title = 'Staff';
 }elseif($_SESSION['role'] == 1){
-    $title = 'Manager';
+    $title = 'Analyst';
 }elseif($_SESSION['role'] == 2){
     $title = 'Admin';
 }
-
-?>
