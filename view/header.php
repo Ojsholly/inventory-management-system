@@ -1,8 +1,8 @@
 <?php
 session_start();
-include ('inc/functions.php');
+include('inc/functions.php');
 
-include ('inc/redirect.php');
+include('inc/redirect.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ include ('inc/redirect.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>POS | <?php echo $page?></title>
+    <title>Shoprite Inventory Management System | <?php echo $page ?></title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -25,14 +25,14 @@ include ('inc/redirect.php');
     <link rel="stylesheet" href="assets/css/style.css">
 
 
-	<link rel ="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-	<link rel ="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
     <!-- endinject -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
 
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
 
     <!-- Bootstrap CDN -->
 
@@ -42,23 +42,53 @@ include ('inc/redirect.php');
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!---Datatables-->
-<!--    <script src = " https://code.jquery.com/jquery-3.3.1.js"> </script>-->
-    <script src = "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"> </script>
-    <script src = "https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"> </script>
+    <script src=" https://code.jquery.com/jquery-3.3.1.js"> </script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"> </script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"> </script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+
+
+
+
+
+    <script src="js/table2csv.js">
+    </script>
     <script>
-        $(document).ready(function() {
-            $('#table').DataTable();
-        } );
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
     </script>
 
-    <!--select 2 --->
+    <script>
+    $(document).ready(function() {
+        $("#export_button").click(function() {
+            $('table').table2csv({
+                file_name: 'Shoprite Inventory Management System <?php echo $page ?>.csv',
+                header_body_space: 0
+            });
+        });
+    });
+    </script>
+    <!--select 2--->
+
     <link rel="stylesheet" href="../dist/css/select2.css">
+
     <link rel="stylesheet" href="../dist/css/select2.min.css">
 
-<link href="select2.css" rel="stylesheet"/>
-    <script src="select2.js"></script>
+    <link href="select2.css" rel="stylesheet" />
+    <script src="select2.js">
+    </script>
     <script>
-        $(document).ready(function() { $("#e1").select2(); });
+    $(document).ready(function() {
+        $("select").select2();
+    });
     </script>
 
 
@@ -67,11 +97,10 @@ include ('inc/redirect.php');
 
 
     <style>
-
-        .anyClass {
-            height:400px;
-            overflow-y: scroll;
-        }
+    .anyClass {
+        height: 400px;
+        overflow-y: scroll;
+    }
 
     [data-tooltip] {
         position: relative;
@@ -135,210 +164,155 @@ include ('inc/redirect.php');
         opacity: 1;
     }
 
-        hr {
-            display: block;
-            color: black;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-            margin-left: auto;
-            margin-right: auto;
-            border-style: inset;
-            border-width: 3px;
-        }
+    hr {
+        display: block;
+        color: black;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 3px;
+    }
 
-</style>
+    </style>
 
 </head>
 
 <body>
-<?php
-include ('authenticate.php');
-?>
-<div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-            <a class="navbar-brand brand-logo" href="dashboard.php">
-                <img src="assets/images/logo.svg" alt="logo" />
-            </a>
-            <a class="navbar-brand brand-logo-mini" href="dashboard.php">
-                <img src="assets/images/logo-mini.svg" alt="logo" />
-            </a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center">
+    <?php
+    include('authenticate.php');
+    ?>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+                <a class="navbar-brand brand-logo" href="dashboard.php">
+                    <img style="background-color: red;"
+                        src="https://www.shoprite.com.ng/content/dam/shoprite/siteassest/shoprite_logo.png"
+                        alt="logo" />
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center">
 
-            <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown d-none d-xl-inline-block">
-                    <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <span class="profile-text">Hello, <?php echo $title?> !</span>
-                        <img class="img-xs rounded-circle" src="assets/images/faces/face1.png" alt="Profile image">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                        <a class="dropdown-item" href="login.php?message=logout">
-                            Sign Out
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown d-none d-xl-inline-block">
+                        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="profile-text">Hello, <?php echo $title ?> !</span>
+                            <img class="img-xs rounded-circle" src="assets/images/faces/face1.png" alt="Profile image">
                         </a>
-                    </div>
-                </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                <span class="mdi mdi-menu"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper" >
-        <!-- partial:partials/_sidebar.html -->
-        <nav  class="sidebar sidebar-offcanvas " id="sidebar" <?php if ($page == 'Products') echo 'style="display: none;"'?>>
-            <ul class="nav ">
-                <li class="nav-item nav-profile">
-                    <div class="nav-link">
-                        <div class="user-wrapper">
-                            <div class="profile-image">
-                                <img src="assets/images/faces/face1.png" alt="profile image">
-                            </div>
-                            <div class="text-wrapper">
-                                <p class="profile-name">Administrator</p>
-                                <div>
-                                    <small class="designation text-muted"><?php echo $title;?></small>
-                                    <span class="status-indicator online"></span>
-                                </div>
-                            </div>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <a class="dropdown-item" href="login.php?message=logout">
+                                Sign Out
+                            </a>
                         </div>
-                        <a href="add_product.php" class="nav-link">
-                        <button class="btn btn-success btn-block">Add Product
-                            <i class="mdi mdi-plus"></i>
-                        </button></a>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">
-                        <i class="menu-icon mdi mdi-television"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="products.php">
-                        <i class="menu-icon mdi mdi-table"></i>
-                        <span class="menu-title">Sell Items</span>
-                    </a>
-                </li>
-                <li class="nav-item" <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"'?>>
-                    <a class="nav-link" href="refund_product.php">
-                        <i class="menu-icon mdi mdi-table"></i>
-                        <span class="menu-title">Refund Product</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-content-copy"></i>
-                        <span class="menu-title">Category</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="category">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="add_category.php">Add Category</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_edit_category.php">View/Edit Category</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-content-copy"></i>
-                        <span class="menu-title">Products</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="products">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="add_product.php">Add Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_edit_product.php">View/Edit Products</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item"  <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"'?>>
-                    <a class="nav-link" data-toggle="collapse" href="#Expense" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-content-copy"></i>
-                        <span class="menu-title">Expenses</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="Expense">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="add_expense.php">Add Expense</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_edit_expense.php">View/Edit Expenses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_edit_refund.php">View/Edit Refund</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#transaction" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-content-copy"></i>
-                        <span class="menu-title">Transaction</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="transaction">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="give_money.php">Give Money</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="receive_money.php">Receive Money</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_money_give.php">View Money Given</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_money_receive.php">View Money Received</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item"  <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"'?>>
-                    <a class="nav-link" href="generate_report.php" >
-                        <i class="menu-icon mdi mdi-restart"></i>
-                        <span class="menu-title">Report</span>
-                    </a>
-                </li>
-                <li class="nav-item"  <?php if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) echo 'style="display: none;"'?>>
-                    <a class="nav-link" data-toggle="collapse" href="#Staff" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-content-copy"></i>
-                        <span class="menu-title">Staff Management</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="Staff">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="create_staff.php">Create Staff</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_edit_staff.php">View/Edit Staff</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item"  <?php if ($_SESSION['role'] == 0) echo 'style="display: none;"'?>>
-                    <a class="nav-link" href="company_profile.php" >
-                        <i class="menu-icon mdi mdi-restart"></i>
-                        <span class="menu-title">Company Profle</span>
-                    </a>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
         </nav>
 
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas " id="sidebar"
+                <?php if ($page == 'Products') echo 'style="display: none;"' ?>>
+                <ul class="nav ">
+                    <li class="nav-item nav-profile">
+                        <div class="nav-link">
+                            <div class="user-wrapper">
+                                <div class="profile-image">
+                                    <img src="assets/images/faces/face1.png" alt="profile image">
+                                </div>
+                                <div class="text-wrapper">
+                                    <p class="profile-name"><?php echo $title; ?></p>
+                                    <div>
+                                        <small class="designation text-muted"></small>
+                                        <span class="status-indicator online">Online</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="add_product.php" class="nav-link">
+                                <button class="btn btn-success btn-block">Add Product
+                                    <i class="mdi mdi-plus"></i>
+                                </button></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php">
+                            <i class="menu-icon mdi mdi-television"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-content-copy"></i>
+                            <span class="menu-title">Category</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="category">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"
+                                    <?php if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) echo 'style="display: none;"' ?>>
+                                    <a class="nav-link" href="add_category.php">Add Category</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_edit_category.php">View/Edit Category</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-content-copy"></i>
+                            <span class="menu-title">Products</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="products">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="add_product.php">Add Products</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_edit_product.php">View/Edit Products</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"
+                        <?php if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) echo 'style="display: none;"' ?>>
+                        <a class="nav-link" data-toggle="collapse" href="#Staff" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-content-copy"></i>
+                            <span class="menu-title">Staff Management</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="Staff">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="create_staff.php">Create Staff</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_edit_staff.php">View/Edit Staff</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="view_login_activity.php">View Login Activity</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.php">
+                            <i class="menu-icon mdi mdi-table"></i>
+                            <span class="menu-title">Sell Items</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
